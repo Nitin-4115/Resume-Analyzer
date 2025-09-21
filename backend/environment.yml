@@ -1,0 +1,27 @@
+# backend/environment.yml
+name: resume-analyzer-env
+channels:
+  - conda-forge
+  - defaults
+dependencies:
+  # Core packages installed with Conda
+  - python=3.10
+  - pip
+  - spacy
+  - pandas
+  
+  # Packages to be installed with pip
+  - pip:
+    - fastapi
+    - uvicorn[standard]
+    - PyMuPDF
+    - python-docx
+    - thefuzz
+    - sentence-transformers
+    - langchain
+    - langchain-google-genai
+    - python-dotenv
+    - pydantic
+    - python-multipart
+    - requests
+    - chromadb

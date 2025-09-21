@@ -1,0 +1,12 @@
+/* frontend/src/index.css */
+@import "tailwindcss";
+
+body {
+  /* The Aurora Background */
+  background-color: #111827; /* Dark gray fallback */
+  background-image: 
+    radial-gradient(at 20% 20%, hsla(210, 80%, 40%, 0.3) 0px, transparent 50%),
+    radial-gradient(at 80% 20%, hsla(28, 100%, 53%, 0.2) 0px, transparent 50%),
+    radial-gradient(at 80% 80%, hsla(340, 90%, 60%, 0.2) 0px, transparent 50%),
+    radial-gradient(at 20% 80%, hsla(190, 90%, 50%, 0.3) 0px, transparent 50%);
+}
