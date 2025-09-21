@@ -4,12 +4,14 @@ FROM python:3.10-slim
 # Set work directory
 WORKDIR /app
 
+# Copy requirements file
+COPY backend/requirements.txt ./requirements.txt
+
 # Install dependencies
-COPY backend/requirements.txt /app/requirements.txt
-RUN pip install --no-cache-dir -r /app/requirements.txt
+RUN pip install --no-cache-dir -r requirements.txt
 
 # Copy backend code
-COPY backend /app/backend
+COPY backend ./backend
 
 # Expose port
 EXPOSE 8000
