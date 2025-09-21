@@ -1,24 +1,18 @@
-# --- Build frontend ---
-FROM node:18 AS frontend
-WORKDIR /app/frontend
-COPY frontend/ ./
-RUN npm install && npm run build
+# Use an official lightweight Python image
+FROM python:3.10-slim
 
-# --- Backend with Python ---
-FROM python:3.11-slim AS backend
+# Set work directory
 WORKDIR /app
 
-# Copy backend source
-COPY backend/ ./backend/
-
-# Copy built frontend into backend (to serve static files)
-COPY --from=frontend /app/frontend/dist ./frontend/dist
-
 # Install dependencies
-RUN pip install --no-cache-dir -r backend/requirements.txt uvicorn
+COPY backend/requirements.txt /app/requirements.txt
+RUN pip install --no-cache-dir -r /app/requirements.txt
 
-# Expose FastAPI port
-EXPOSE 8080
+# Copy backend code
+COPY backend /app/backend
 
-# Start FastAPI server
-CMD ["uvicorn", "backend.main:app", "--host", "0.0.0.0", "--port", "8080"]
+# Expose port
+EXPOSE 8000
+
+# Start FastAPI with Uvicorn
+CMD ["uvicorn", "backend.main:app", "--host", "0.0.0.0", "--port", "8000"]
